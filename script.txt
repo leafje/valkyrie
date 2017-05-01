@@ -1,0 +1,188 @@
+; Designed by and © Jennifer Leaf
+; Icons made by Delapouite; Lorc. Available on http://game-icons.net
+; Version 0.2 April 21 2017
+
+; Icons from http://game-icons.net
+
+; Generic parameters
+[all]=1-{(Quantity)}
+linkmulti=Quantity
+link="cardlist v2.csv"
+BORDER=RECTANGLE
+DPI=300
+[cardWidth] = 6.3
+[cardHeight] = 8.8
+CARDSIZE=[cardWidth],[cardHeight]
+SAVEPDF=cards.pdf
+font="arial",12,"",#000000
+
+; Construct the Viking cards
+
+; Add the first weapon icon
+[iconX] = 0.5
+[iconY] = 0.5
+[iconH] = 0.8
+[iconW] = 0.8
+
+if=[Weapon1]="1"
+IMAGE=,"crossed-swords.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+IMAGE=,"crossed-swords.png", [cardWidth] - [iconX] - [iconW], [cardHeight] - [iconY] - [iconH], [iconW], [iconH], 180, PN
+endif
+
+if=[Weapon1]="2"
+IMAGE=,"stone-spear.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+IMAGE=,"stone-spear.png", [cardWidth] - [iconX] - [iconW], [cardHeight] - [iconY] - [iconH], [iconW], [iconH], 180, PN
+endif
+
+if=[Weapon1]="3"
+IMAGE=,"war-axe.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+IMAGE=,"war-axe.png", [cardWidth] - [iconX] - [iconW], [cardHeight] - [iconY] - [iconH], [iconW], [iconH], 180, PN
+endif
+
+; Add the second weapon icon
+[iconY] = 1.4
+
+if=[Weapon2]="2"
+IMAGE=,"stone-spear.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+IMAGE=,"stone-spear.png", [cardWidth] - [iconX] - [iconW], [cardHeight] - [iconY] - [iconH], [iconW], [iconH], 180, PN
+endif
+
+if=[Weapon2]="3"
+IMAGE=,"war-axe.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+IMAGE=,"war-axe.png", [cardWidth] - [iconX] - [iconW], [cardHeight] - [iconY] - [iconH], [iconW], [iconH], 180, PN
+endif
+
+if=[Weapon2]="4"
+IMAGE=,"bow-arrow.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+IMAGE=,"bow-arrow.png", [cardWidth] - [iconX] - [iconW], [cardHeight] - [iconY] - [iconH], [iconW], [iconH], 180, PN
+endif
+
+; Add the shield icon
+[iconY] = 2.3
+
+if=[Shield]="1"
+IMAGE=,"fire-shield.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+IMAGE=,"fire-shield.png", [cardWidth] - [iconX] - [iconW], [cardHeight] - [iconY] - [iconH], [iconW], [iconH], 180, PN
+endif
+
+if=[Shield]="2"
+IMAGE=,"ice-shield.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+IMAGE=,"ice-shield.png", [cardWidth] - [iconX] - [iconW], [cardHeight] - [iconY] - [iconH], [iconW], [iconH], 180, PN
+endif
+
+if=[Shield]="3"
+IMAGE=,"edged-shield.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+IMAGE=,"edged-shield.png", [cardWidth] - [iconX] - [iconW], [cardHeight] - [iconY] - [iconH], [iconW], [iconH], 180, PN
+endif
+
+; Now construct the control cards.
+
+; Add information for cards that affect the player
+if=([SelfShield]<>"") _OR_ ([SelfWeapon]<>"")
+text=,"Self", 0, 0.5, 100%, 1, center
+endif
+
+[iconX] = 1.0
+[iconY] = 1.5
+[iconH] = 1.1
+[iconW] = 1.1
+[marginX] = [iconW] + 0.2
+[marginY] = [iconH] + 0.2
+
+[checkShield1] = "1"@[SelfShield]
+if=[checkShield1]
+IMAGE=,"fire-shield.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkShield1] = [iconX] + [marginX]
+
+[checkShield2] = "2"@[SelfShield]
+if=[checkShield2]
+IMAGE=,"ice-shield.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkShield2] = [iconX] + [marginX]
+
+[checkShield3] = "3"@[SelfShield]
+if=[checkShield3]
+IMAGE=,"edged-shield.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkShield3] = [iconX] + [marginX]
+
+[iconX] = 1.0
+[iconY] = [iconY] + [marginY]
+
+[checkWeapon1] = "1"@[SelfWeapon]
+if=[checkWeapon1]
+IMAGE=,"crossed-swords.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkWeapon1] = [iconX] + [marginX]
+
+[checkWeapon2] = "2"@[SelfWeapon]
+if=[checkWeapon2]
+IMAGE=,"stone-spear.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkWeapon2] = [iconX] + [marginX]
+
+[checkWeapon3] = "3"@[SelfWeapon]
+if=[checkWeapon3]
+IMAGE=,"war-axe.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkWeapon3] = [iconX] + [marginX]
+
+[checkWeapon4] = "4"@[SelfWeapon]
+if=[checkWeapon4]
+IMAGE=,"bow-arrow.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkWeapon4] = [iconX] + [marginX]
+
+if=([OpponentShield]<>"") _OR_ ([OpponentWeapon]<>"")
+text=,"Opponent", 0, 4.5, 100%, 1, center
+endif
+
+[iconX] = 1.0
+[iconY] = 5.5
+
+[checkShield1] = "1"@[OpponentShield]
+if=[checkShield1]
+IMAGE=,"fire-shield.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkShield1] = [iconX] + [marginX]
+
+[checkShield2] = "2"@[OpponentShield]
+if=[checkShield2]
+IMAGE=,"ice-shield.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkShield2] = [iconX] + [marginX]
+
+[checkShield3] = "3"@[OpponentShield]
+if=[checkShield3]
+IMAGE=,"edged-shield.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkShield3] = [iconX] + [marginX]
+
+[iconX] = 1.0
+[iconY] = [iconY] + [marginY]
+
+[checkWeapon1] = "1"@[OpponentWeapon]
+if=[checkWeapon1]
+IMAGE=,"crossed-swords.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkWeapon1] = [iconX] + [marginX]
+
+[checkWeapon2] = "2"@[OpponentWeapon]
+if=[checkWeapon2]
+IMAGE=,"stone-spear.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkWeapon2] = [iconX] + [marginX]
+
+[checkWeapon3] = "3"@[OpponentWeapon]
+if=[checkWeapon3]
+IMAGE=,"war-axe.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkWeapon3] = [iconX] + [marginX]
+
+[checkWeapon4] = "4"@[OpponentWeapon]
+if=[checkWeapon4]
+IMAGE=,"bow-arrow.png", [iconX], [iconY], [iconW], [iconH], 0, PN
+endif
+[iconX]@[checkWeapon4] = [iconX] + [marginX]
+
