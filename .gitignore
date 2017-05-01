@@ -1,3 +1,9 @@
+*.png
+*.pdf
+*.xlsx
+
+# Boilerplate code 
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
